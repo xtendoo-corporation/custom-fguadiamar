@@ -10,10 +10,12 @@
     "license": "AGPL-3",
     "depends": [
         "base",
-        "web"
+        "web",
+        "account_invoice_report_grouped_by_picking"
     ],
     "data": [
         "views/layout/external_layout_clean.xml",
+        "views/account/account_move.xml",
     ],
     "installable": True,
     "auto_install": False,
