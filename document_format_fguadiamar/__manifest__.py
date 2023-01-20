@@ -11,11 +11,13 @@
     "depends": [
         "base",
         "web",
-        "account_invoice_report_grouped_by_picking"
+        "account_invoice_report_grouped_by_picking",
+        "product",
     ],
     "data": [
         "views/layout/external_layout_clean.xml",
         "views/account/account_move.xml",
+        'report/product_reports.xml',
     ],
     "installable": True,
     "auto_install": False,
