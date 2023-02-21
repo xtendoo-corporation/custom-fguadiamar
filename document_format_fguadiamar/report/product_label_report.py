@@ -31,11 +31,6 @@ def _prepare_data(env, data):
     layout_wizard = env['product.label.layout'].browse(data.get('layout_wizard'))
     if not layout_wizard:
         return {}
-    print("*"*120)
-    print("LLEGA CON LAYOUT")
-    print("ROWS", layout_wizard.rows)
-    print("COLS", layout_wizard.columns)
-    print("*"*120)
     return {
         'quantity': quantity_by_product,
         'rows': layout_wizard.rows,
@@ -50,8 +45,5 @@ class ReportProductTemplateLabelGuadiamar(models.AbstractModel):
     _description = 'Product Label Report'
 
     def _get_report_values(self, docids, data):
-        print("*"*80)
-        print("Entra")
-        print("*"*80)
         return _prepare_data(self.env, data)
 
