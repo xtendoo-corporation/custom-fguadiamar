@@ -27,11 +27,17 @@
                     <div class="o_label_name">
                         <strong t-field="product.display_name"/>
                     </div>
-                    <t t-set="price_origin" t-value="product.tax_string.find('=') + 2"/>
-                    <t t-set="price_end" t-value="product.tax_string.find('€') - 1"/>
-                    <t t-set="price_with_tax" t-value="product.tax_string[price_origin:price_end]"></t>
-                    <t t-set="price_with_tax" t-value="price_with_tax.replace(',','.')"></t>
-                    <t t-set="price_with_tax" t-value="float(price_with_tax)"></t>
+                    <t t-if="product.list_price != 0.00">
+                        <t t-set="price_origin" t-value="product.tax_string.find('=') + 2"/>
+                        <t t-set="price_end" t-value="product.tax_string.find('€') - 1"/>
+                        <t t-set="price_with_tax" t-value="product.tax_string[price_origin:price_end]"></t>
+                        <t t-set="price_with_tax" t-value="price_with_tax.replace(',','.')"></t>
+                        <t t-set="price_with_tax" t-value="float(price_with_tax)"></t>
+                    </t>
+                    <t t-else="">
+                         <t t-set="price_with_tax" t-value="product.list_price"></t>
+                    </t>
+
 
                     <div class="text-right" style="padding-top:0;padding-bottom:0">
                         <t t-if="product.is_product_variant">
