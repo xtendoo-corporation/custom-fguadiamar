@@ -58,12 +58,61 @@
             </td>
         </template>
 
+         <template id="report_simple_label_guadiamar_3_5">
+             <t t-set="barcode_size" t-value="'width:23mm;height:8mm'"/>
+            <t t-set="table_style" t-value="'width:50mm;height:30mm;' + table_style"/>
+            <td t-att-style="make_invisible and 'visibility:hidden;'" >
+                <div class="o_label_full" t-att-style="table_style">
+                    <div id="company_logo">
+                        <img
+                    style="width:60%;margin-left:20%;"
+                    src="/document_format_fguadiamar/static/src/img/logo.png"
+                />
+                    </div>
+                    <div class="o_label_name">
+                        <strong style="font-size:0.8em;" t-field="product.display_name"/>
+                    </div>
+                    <t t-if="product.list_price != 0.00">
+                        <t t-set="price_origin" t-value="product.tax_string.find('=') + 2"/>
+                        <t t-set="price_end" t-value="product.tax_string.find('€') - 1"/>
+                        <t t-set="price_with_tax" t-value="product.tax_string[price_origin:price_end]"></t>
+                        <t t-set="price_with_tax" t-value="price_with_tax.replace(',','.')"></t>
+                        <t t-set="price_with_tax" t-value="float(price_with_tax)"></t>
+                    </t>
+                    <t t-else="">
+                         <t t-set="price_with_tax" t-value="product.list_price"></t>
+                    </t>
+
+
+                    <div class="text-right" style="padding-top:0;padding-bottom:0">
+                        <t t-if="product.is_product_variant">
+                            <strong class="o_label_price_medium" t-esc="price_with_tax" t-options="{'widget': 'monetary', 'label_price': True, 'display_currency': product.currency_id}"/>
+                        </t>
+                        <t t-else="">
+                            <strong class="o_label_price_medium" t-esc="price_with_tax" t-options="{'widget': 'monetary', 'label_price': True, 'display_currency': product.currency_id}"/>
+                        </t>
+                    </div>
+<!--                    <div class= "text-center o_label_small_barcode">-->
+<!--                        <span class="text-nowrap" t-field="product.default_code"/>-->
+<!--                        <t t-if="barcode">-->
+<!--                            <div t-out="barcode" style="padding:0" t-options="{'widget': 'barcode', 'symbology': 'auto', 'img_style': barcode_size}"/>-->
+<!--                            <span class="text-center" t-out="barcode"/>-->
+<!--                        </t>-->
+<!--                    </div>-->
+                </div>
+            </td>
+        </template>
+
         <template id="report_productlabel_g">
             <t t-call="web.html_container">
                 <t t-if="columns and rows">
                     <t t-if="columns == 3 and rows == 6">
                         <t t-set="padding_page" t-value="'padding: 14mm 3mm'"/>
                         <t t-set="report_to_call" t-value="'document_format_fguadiamar.report_simple_label_guadiamar'"/>
+                    </t>
+                    <t t-elif="columns == 4 and rows == 8">
+                        <t t-set="padding_page" t-value="'padding: 10mm 3mm'"/>
+                        <t t-set="report_to_call" t-value="'document_format_fguadiamar.report_simple_label_guadiamar_3_5'"/>
                     </t>
                 </t>
                 <t t-foreach="range(page_numbers)" t-as="page">

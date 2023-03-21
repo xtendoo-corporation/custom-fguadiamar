@@ -11,6 +11,7 @@ class ProductLabelLayout(models.TransientModel):
 
     print_format = fields.Selection([
         ('fguadiamar', 'Ferreteria Guadiamar'),
+        ('fguadiamar_3_5', 'Ferreteria Guadiamar 3 x 5'),
         ('dymo', 'Dymo'),
         ('2x7xprice', '2 x 7 with price'),
         ('4x7xprice', '4 x 7 with price'),
@@ -26,10 +27,9 @@ class ProductLabelLayout(models.TransientModel):
                 wizard.rows = int(rows)
             else:
                 if wizard.print_format == 'fguadiamar':
-                    print("//"*120)
-                    print("calcular dimensiones")
-                    print("//"*120)
                     wizard.columns, wizard.rows = 3, 6
+                elif wizard.print_format == 'fguadiamar_3_5':
+                    wizard.columns, wizard.rows = 4, 8
                 else:
                     wizard.columns, wizard.rows = 1, 1
 
@@ -41,6 +41,8 @@ class ProductLabelLayout(models.TransientModel):
         if self.print_format == 'dymo':
             xml_id = 'product.report_product_template_label_dymo'
         elif self.print_format == 'fguadiamar':
+            xml_id = 'document_format_fguadiamar.report_product_label_guadiamar'
+        elif self.print_format == 'fguadiamar_3_5':
             xml_id = 'document_format_fguadiamar.report_product_label_guadiamar'
         elif 'x' in self.print_format:
             xml_id = 'product.report_product_template_label'
@@ -64,8 +66,4 @@ class ProductLabelLayout(models.TransientModel):
             'layout_wizard': self.id,
             'price_included': 'xprice' in self.print_format,
         }
-        print("*"*80)
-        print("xml_id: ", xml_id)
-        print("data: ", data)
-        print("*"*80)
         return xml_id, data
