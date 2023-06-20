@@ -8,5 +8,20 @@
             <xpath expr="//tr[@t-else='']" position="replace">
             </xpath>
         </template>
+
+         <template
+            id="report_invoice_document_2"
+            inherit_id="account.report_invoice_document"
+        >
+            <xpath expr="//td[@name='account_invoice_line_name']" position="replace">
+                <t t-if="line.product_id">
+                    <t t-set="line_name" t-value="line.product_id.name"></t>
+                </t>
+                <t t-else="">
+                    <t t-set="line_name" t-value="line.name"></t>
+                </t>
+                <td name="account_invoice_line_name"><span t-esc="line_name" t-options="{'widget': 'text'}"/></td>
+            </xpath>
+        </template>
     </data>
 </odoo>

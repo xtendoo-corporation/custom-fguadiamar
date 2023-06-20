@@ -13,6 +13,7 @@
         "web",
         "account_invoice_report_grouped_by_picking",
         "product",
+        "account",
     ],
     "data": [
         "views/layout/external_layout_clean.xml",
