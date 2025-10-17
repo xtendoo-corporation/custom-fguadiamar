@@ -5,7 +5,7 @@
             id="document_format_fguadiamar.external_layout_clean_fguadiamar"
             inherit_id="web.external_layout_bold"
         >
-            <xpath expr="//div[hasclass('o_clean_header')]" position="replace">
+           <xpath expr="//div[@class='row']" position="replace">
                 <div class="o_clean_header">
                     <div class="row">
                         <div class="col-6">
@@ -13,7 +13,7 @@
                                 t-if="company.logo"
                                 t-att-src="image_data_uri(company.logo)"
                                 alt="Logo"
-                                style="max-height:200px"
+                                style="max-height:100px"
                             />
                         </div>
                         <div class="col-5 offset-1" name="company_address">
