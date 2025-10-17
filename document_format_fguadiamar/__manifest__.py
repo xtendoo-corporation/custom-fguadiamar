@@ -1,7 +1,7 @@
 {
     "name": "Document Format Fguadiamar",
     "summary": """Formatos de documentos de Ferreteria Guadiamar""",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "description": """Formatos de documentos de Ferreteria Guadiamar""",
     "author": "Daniel Dominguez",
     "company": "Xtendoo",
